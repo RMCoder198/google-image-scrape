@@ -1,0 +1,35 @@
+{
+  "name": "google-image-scrape",
+  "version": "1.0.0",
+  "dependencies": {
+    "images-scraper": "^2.0.11",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jimp": "^0.6.1",
+    "mongoose": "^5.5.2",
+    "requests": "^0.2.2",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.2.1",
+    "prettier": "^1.16.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "proxy": "http://localhost:5000",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
