@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /server/config/key_dev.js
-/server/images
+#/server/images
 # testing
 /coverage
 

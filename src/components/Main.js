@@ -1,19 +1,17 @@
 import React from "react";
 import axios from "axios";
 import GoogleImages from "google-images";
-import ImageGrid from "./ImageGrid"
  class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       word: "",
-      data: [],
-      loading: false
+      data: []
     };
     this.input = React.createRef();
   }
   handleClick() {
-    axios(`/api/images/${this.input.current.value}`)
+    axios.get(`/api/images/${this.input.current.value}`)
       .then(res => {
         console.log(res);
         const client = new GoogleImages(
@@ -32,8 +30,8 @@ import ImageGrid from "./ImageGrid"
     console.log(this.state.data)
     if(this.state.data.length>0){
     images = this.state.data.map((image, index) => (
-      <div className="col-4" key={index}>
-        <img src={image.url} alt=""  width="auto" height="50%"/>
+      <div className="col-4 " key={index}>
+        <img src={image.url} alt=""  width="256px" height="256px"/>
       </div>
     ));
     }
@@ -43,9 +41,9 @@ import ImageGrid from "./ImageGrid"
           <input
             type="text"
             className="form-control"
-            placeholder="Recipient's username"
+            placeholder="Search images..."
             ref={this.input}
-            aria-label="Recipient's username"
+            aria-label="Search images..."
             aria-describedby="basic-addon2"
           />
           <div className="input-group-append">
@@ -56,7 +54,7 @@ import ImageGrid from "./ImageGrid"
             >
               Get Images
             </button>
-            <a className="btn" href="/words">Searched History</a>
+            <a className="btn" href="/words">Search History</a>
           </div>
         </div>
         <div className="row">{images}</div>

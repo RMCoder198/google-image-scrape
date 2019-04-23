@@ -5,6 +5,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.2.1",
+    "cloudinary": "^1.14.0",
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "google-images": "^2.1.0",

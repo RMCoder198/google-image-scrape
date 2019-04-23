@@ -5,12 +5,13 @@ const bodyParser = require('body-parser');
 const db = require('./config/key').mongoUri;
 const words = require('./routes/api/words.js');
 const path = require('path');
-
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use('/api',words);
 app.use(express.static(__dirname ));
 app.use(express.static(path.join(__dirname,'./images')))
+
+
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder

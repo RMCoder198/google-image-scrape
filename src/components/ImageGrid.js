@@ -11,7 +11,7 @@ class ImageGrid extends React.Component {
   }
   render() {
     const images = this.state.images.map((image, index) => (
-      <div className="col-4" key={index}>
+      <div className="col-4 " key={index}>
         <img src={image} alt="" />
       </div>
     ));
