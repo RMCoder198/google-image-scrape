@@ -25,10 +25,6 @@ if (process.env.NODE_ENV === 'production') {
 
 mongoose.connect(db,{ useNewUrlParser: true }).then(()=> console.log("mongodb connected")).catch( err => console.log(err));
 { useNewUrlParser: true }
-//passport middleware
-
-
-//passport config
 
 const port = process.env.PORT || 5000;
 
