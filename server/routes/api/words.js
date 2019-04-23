@@ -36,17 +36,17 @@ router.get("/images/:word", (req, res) => {
       }
     })
     .then(function(data) {
-      for (let i = 0; i < 15; i++) {
-        Jimp.read(data[i].url, function(err, image) {
-          if (err) throw err;
-          image
-            .resize(250, 250)
-            .quality(50)
-            .grayscale()
-            .write(`./server/images/${req.params.word}-${i}.jpg`);
-          console.log("done");
-        });
-      }
+      // for (let i = 0; i < 15; i++) {
+      //   Jimp.read(data[i].url, function(err, image) {
+      //     if (err) throw err;
+      //     image
+      //       .resize(250, 250)
+      //       .quality(50)
+      //       .grayscale()
+      //       .write(`./server/images/${req.params.word}-${i}.jpg`);
+      //     console.log("done");
+      //   });
+      // }
 
       // var image = [];
       // for (let i = 0; i < 15; i++) {
