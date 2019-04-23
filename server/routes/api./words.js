@@ -37,7 +37,6 @@ function getImages(word){
      
     }
 
-    console.log("first 10 results from google");
 
   
   })
@@ -48,9 +47,15 @@ function getImages(word){
 
 router.get("/test", (req, res) => res.json({ message: "Test API works" }));
 
-router.get("/image/:word", (req, res) => {
+router.get("/getImages/:word", (req, res) => {
   Word.findOne({ word: req.params.word })
-    .then(data => res.json(data))
+    .then(data => {
+      let images =[]
+      for(let i=0;i<15;i++){
+          images[i]= `https://agile-chamber-19810.herokuapp.com/images/${req.params.word}-${i}.jpg` 
+      }
+      res.json(images)
+    })
     .catch(err => res.json(err));
 });
 
@@ -62,8 +67,12 @@ router.get("/words", (req, res) => {
 
 router.get("/images/:word", (req, res) => {
   getImages(req.params.word)
-  
-  res.json("ok")
+  const word = new Word({
+    word:req.params.word
+  })
+  word.save()
+      .then((data)=>res.json(data))
+      .catch((er)=>res.json(er))
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@ class Images extends React.Component {
   }
   componentWillMount() {
     axios
-      .get(`/api/image/${this.props.match.params.word}`)
+      .get(`/api/getImages/${this.props.match.params.word}`)
       .then(res =>
         this.setState({ images: res.data.images }, function(re) {
           console.log(this.state.images);
