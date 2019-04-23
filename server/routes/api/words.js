@@ -48,21 +48,21 @@ router.get("/images/:word", (req, res) => {
         });
       }
 
-      var image = [];
-      for (let i = 0; i < 15; i++) {
-        image.push(
-          `http://${port}/images/${req.params.word}/${req.params.word}${i}.png`
-        );
-      }
+      // var image = [];
+      // for (let i = 0; i < 15; i++) {
+      //   image.push(
+      //     `http://${port}/images/${req.params.word}/${req.params.word}${i}.png`
+      //   );
+      // }
 
-      const word = new Word({
-        word: req.params.word,
-        images: image
-      });
-      word
-        .save()
-        .then(data => console.log(data))
-        .catch(er => console.log(er));
+      // const word = new Word({
+      //   word: req.params.word,
+      //   images: image
+      // });
+      // word
+      //   .save()
+      //   .then(data => console.log(data))
+      //   .catch(er => console.log(er));
 
       console.log("first 10 results from google");
 
