@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const wordSchema = new Schema({
-  word:String
-});
+  word:
+  {
+    type:String,
+    unique:true
+  }
+  });
 
 module.exports = Word = mongoose.model('words', wordSchema);
