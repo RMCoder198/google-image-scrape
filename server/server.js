@@ -10,14 +10,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use('/api',words);
 app.use(express.static(__dirname ));
-app.use(express.static('./images'))
+app.use(express.static(path.join(__dirname,'./images')))
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('../build'));
+  app.use(express.static(path.join(__dirname,"../build")));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join('../build/index.html'));
+    res.sendFile(path.join(__dirname, "../build/index.html"))
   });
 }
 
