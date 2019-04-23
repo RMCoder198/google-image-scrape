@@ -11,7 +11,7 @@ import GoogleImages from "google-images";
     this.input = React.createRef();
   }
   handleClick() {
-    axios.get(`/api/images/${this.input.current.value}`)
+    axios.post(`/api/images/${this.input.current.value}`)
       .then(res => {
         console.log(res);
         const client = new GoogleImages(

@@ -40,10 +40,10 @@ router.get("/words", (req, res) => {
 
 
 /*
-GET store word and get response 
+POST store word and get response 
 public
 */
-router.get("/images/:word", (req, res) => {
+router.post("/images/:word", (req, res) => {
   Word.findOne({word:req.params.word})
     .then((data)=>{
       if(data){
