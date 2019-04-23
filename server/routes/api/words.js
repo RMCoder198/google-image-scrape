@@ -9,14 +9,17 @@ const Jimp = require("jimp");
 
 //@ Test
 function writeImage(imageUrl,word,i){
-  Jimp.read(imageUrl, function(err, image) {
-    if (err) throw err;
-    image
-      .resize(250, 250)
-      .quality(50)
-      .grayscale()
-      .write(`./server/images/${word}-${i}.jpg`);
-    console.log("done");
+ 
+  Jimp.read(imageUrl)
+  .then(image => {
+    return image
+      .resize(256, 256) // resize
+      .quality(60) // set JPEG quality
+      .greyscale() // set greyscale
+      .write(`./server/images/${word}-${i}.jpg`); // save
+  })
+  .catch(err => {
+    console.error(err);
   });
 }
 function getImages(word){
