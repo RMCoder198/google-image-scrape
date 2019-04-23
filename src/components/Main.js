@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-
-class Main extends React.Component {
+import GoogleImages from "google-images";
+import ImageGrid from "./ImageGrid"
+ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +16,27 @@ class Main extends React.Component {
     axios(`/api/images/${this.input.current.value}`)
       .then(res => {
         console.log(res);
-        this.setState({ data: res.data });
+        const client = new GoogleImages(
+          "014003092432424072766:nv6pfirfu-8",
+          "AIzaSyAEfba3nSFwgDz3hwKPenWr6c4BKEaGE5Q"
+        );
+        client.search(this.input.current.value, { page: 2 }).then(images => {
+          this.setState({ data: images });
+
+        });
       })
       .catch(err => console.log(err));
   }
   render() {
+    var images=''
+    console.log(this.state.data)
+    if(this.state.data.length>0){
+    images = this.state.data.map((image, index) => (
+      <div className="col-4" key={index}>
+        <img src={image.url} alt=""  width="auto" height="50%"/>
+      </div>
+    ));
+    }
     return (
       <div className="container">
         <div className="input-group mb-3">
@@ -37,10 +54,12 @@ class Main extends React.Component {
               type="button"
               onClick={this.handleClick.bind(this)}
             >
-              Button
+              Get Images
             </button>
+            <a className="btn" href="/words">Searched History</a>
           </div>
         </div>
+        <div className="row">{images}</div>
       </div>
     );
   }
