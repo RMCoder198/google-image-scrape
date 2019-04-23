@@ -21,7 +21,7 @@ class Words extends React.Component {
       <tr>
         <th scope="row">{index + 1}</th>
         <td>
-          <a href={`/images/${word.word}`}>{word.word}</a>
+          <a href={`/getImages/${word.word}`}>{word.word}</a>
         </td>
       </tr>
     ));

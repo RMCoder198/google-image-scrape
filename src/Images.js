@@ -12,7 +12,7 @@ class Images extends React.Component {
     axios
       .get(`/api/getImages/${this.props.match.params.word}`)
       .then(res =>
-        this.setState({ images: res.data.images }, function(re) {
+        this.setState({ images: res }, function(re) {
           console.log(this.state.images);
         })
       )
