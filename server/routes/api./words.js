@@ -10,6 +10,41 @@ const Jimp = require("jimp");
 
 //@ Test
 const port = 5000;
+function writeImage(imageUrl,word,i){
+  Jimp.read(imageUrl, function(err, image) {
+    if (err) throw err;
+    image
+      .resize(250, 250)
+      .quality(50)
+      .grayscale()
+      .write(`./server/images/${word}-${i}.jpg`);
+    console.log("done");
+  });
+}
+function getImages(word){
+  google
+  .list({
+    keyword: word,
+    num: 15,
+    detail: true,
+    nightmare: {
+      show: false
+    }
+  })
+  .then(function(data) {
+    for (let i = 0; i < 15; i++) {
+      writeImage(data[i].url,word,i)
+     
+    }
+
+    console.log("first 10 results from google");
+
+  
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+}
 
 router.get("/test", (req, res) => res.json({ message: "Test API works" }));
 
@@ -26,52 +61,9 @@ router.get("/words", (req, res) => {
 });
 
 router.get("/images/:word", (req, res) => {
-  google
-    .list({
-      keyword: req.params.word,
-      num: 15,
-      detail: true,
-      nightmare: {
-        show: false
-      }
-    })
-    .then(function(data) {
-      for (let i = 0; i < 15; i++) {
-        Jimp.read(data[i].url, function(err, image) {
-          if (err) throw err;
-          image
-            .resize(250, 250)
-            .quality(50)
-            .grayscale()
-            .write(`./server/images/${req.params.word}-${i}.jpg`);
-          console.log("done");
-        });
-      }
-
-      var image = [];
-      for (let i = 0; i < 15; i++) {
-        image.push(
-          `http://${port}/images/${req.params.word}/${req.params.word}${i}.png`
-        );
-      }
-
-      const word = new Word({
-        word: req.params.word,
-        images: image
-      });
-      word
-        .save()
-        .then(data => console.log(data))
-        .catch(er => console.log(er));
-
-      console.log("first 10 results from google");
-
-      res.json(data);
-    })
-    .catch(function(err) {
-      console.log(err);
-      res.json(err);
-    });
+  getImages(req.params.word)
+  
+  res.json("ok")
 });
 
 module.exports = router;
